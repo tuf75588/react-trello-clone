@@ -5,6 +5,7 @@ import {
   NewItemFormContainer,
   NewItemInput,
 } from '../styles/styles';
+import useFocus from '../hooks/useFocus';
 
 interface NewItemFormProps {
   onAdd: (text: string) => void;
@@ -12,16 +13,17 @@ interface NewItemFormProps {
 
 function NewItemForm(props: NewItemFormProps) {
   const [text, setText] = useState<string>('');
+  const { onAdd } = props;
+  const inputRef = useFocus();
   return (
     <NewItemFormContainer>
       <NewItemInput
-        type="text"
-        placeholder="new item"
         value={text}
         onChange={(e) => setText(e.target.value)}
+        ref={inputRef}
       />
 
-      <NewItemButton onClick={() => props.onAdd(text)}>Create</NewItemButton>
+      <NewItemButton onClick={() => onAdd(text)}>Create</NewItemButton>
     </NewItemFormContainer>
   );
 }

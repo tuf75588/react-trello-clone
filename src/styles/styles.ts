@@ -49,8 +49,9 @@ export const AddItemButton = styled.button<AddItemButtonProps>`
   transition: background 85ms ease-in;
   width: 100%:
   &:hover {
-    background: #ffffff52;
-  }
+    background-color: #ffffff52;
+    }
+
 `;
 
 export const NewItemFormContainer = styled.div`

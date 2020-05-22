@@ -19,7 +19,6 @@ function App() {
       </Column>
       <AddNewItem
         toggleButtonText="+ Add Another list"
-        dark
         onAdd={() => console.log('running!')}
       />
     </AppContainer>
