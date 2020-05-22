@@ -9,7 +9,7 @@ In this application we will only recreate the core functionality: creating tasks
 
 Notable third party modules we will use for this application are:
 
-- React-DnD for drag and drop functionality
+- React-DnD for drag and drop
 - Emotion for CSS-in-JS
 
 ---
