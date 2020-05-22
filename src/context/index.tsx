@@ -1,5 +1,5 @@
 import React, { createContext } from 'react';
-import uuid from 'uuid';
+import { v4 } from 'uuid';
 
 interface Task {
   id: string;
@@ -24,23 +24,23 @@ const appData: AppState = {
   lists: [
     {
       text: 'To do',
-      id: uuid.v4(),
-      tasks: [{ id: uuid.v4(), text: 'Generate App Scaffold' }],
+      id: v4(),
+      tasks: [{ id: v4(), text: 'Generate App Scaffold' }],
     },
     {
       text: 'In Progress',
-      id: uuid.v4(),
-      tasks: [{ id: uuid.v4(), text: 'Learn TypeScript' }],
+      id: v4(),
+      tasks: [{ id: v4(), text: 'Learn TypeScript' }],
     },
     {
       text: 'Done',
-      id: uuid.v4(),
-      tasks: [{ id: uuid.v4(), text: 'Begin using static typing' }],
+      id: v4(),
+      tasks: [{ id: v4(), text: 'Begin using static typing' }],
     },
   ],
 };
 
-const AppStateContext = createContext<AppStateContextProps>(
+export const AppStateContext = createContext<AppStateContextProps>(
   {} as AppStateContextProps
 );
 
