@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { AppStateContext } from '../context/index';
 
 function useAppState() {

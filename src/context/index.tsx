@@ -1,6 +1,6 @@
-import React, { createContext } from 'react';
+import React, { createContext, useReducer } from 'react';
 import { v4 } from 'uuid';
-
+import appReducer from '../reducers/index';
 interface Task {
   id: string;
   text: string;
@@ -12,12 +12,13 @@ interface List {
   tasks: Task[];
 }
 
-interface AppState {
+export interface AppState {
   lists: List[];
 }
 
 interface AppStateContextProps {
   state: AppState;
+  dispatch: React.Dispatch<any>;
 }
 
 const appData: AppState = {
@@ -45,8 +46,9 @@ export const AppStateContext = createContext<AppStateContextProps>(
 );
 
 export const AppStateProvider = ({ children }: React.PropsWithChildren<{}>) => {
+  const [state, dispatch] = useReducer(appReducer, appData);
   return (
-    <AppStateContext.Provider value={{ state: appData }}>
+    <AppStateContext.Provider value={{ state, dispatch }}>
       {children}
     </AppStateContext.Provider>
   );
