@@ -1,5 +1,7 @@
 import { AppState } from '../context/index';
 import { Action } from '../actions/index';
+import findItemIndexById from '../utils/findItemByIndexId';
+
 import { v4 } from 'uuid';
 function appReducer(state: AppState, action: Action): AppState {
   switch (action.type) {
@@ -10,6 +12,14 @@ function appReducer(state: AppState, action: Action): AppState {
       };
     }
     case 'ADD_TASK': {
+      const targetLaneIndex = findItemIndexById(
+        state.lists,
+        action.payload.taskId
+      );
+      state.lists[targetLaneIndex].tasks.push({
+        id: v4(),
+        text: action.payload.text,
+      });
       return {
         ...state,
       };

@@ -4,7 +4,7 @@ import Column from './components/Column';
 import AddNewItem from './components/AddNewItem';
 import useAppState from './hooks/useAppState';
 function App() {
-  const { state } = useAppState();
+  const { state, dispatch } = useAppState();
   return (
     <AppContainer className="App">
       {state.lists.map((list, i) => {
@@ -12,7 +12,9 @@ function App() {
       })}
       <AddNewItem
         toggleButtonText="+ Add Another list"
-        onAdd={() => console.log('running!')}
+        onAdd={(text) => {
+          dispatch({ type: 'ADD_LIST', payload: text });
+        }}
       />
     </AppContainer>
   );
