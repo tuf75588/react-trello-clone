@@ -8,7 +8,9 @@ function App() {
   return (
     <AppContainer className="App">
       {state.lists.map((list, i) => {
-        return <Column title={list.text} index={i} key={list.id} />;
+        return (
+          <Column title={list.text} id={list.id} index={i} key={list.id} />
+        );
       })}
       <AddNewItem
         toggleButtonText="+ Add Another list"

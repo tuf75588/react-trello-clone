@@ -5,6 +5,7 @@ import { CardContainer } from '../styles/styles';
 // INTERFACES
 interface CardProps {
   text?: string;
+  index: number;
 }
 
 function Card({ text }: CardProps) {
