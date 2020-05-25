@@ -1,3 +1,5 @@
+import { DragItem } from '../DragItem';
+
 export type Action =
   | {
       type: 'ADD_LIST';
@@ -13,6 +15,9 @@ export type Action =
         dragIndex: number;
         hoverIndex: number;
       };
+    }
+  // set to undefined if we are not dragging anything
+  | {
+      type: 'SET_DRAGGED_ITEM';
+      payload: DragItem | undefined;
     };
-
-type List = string | undefined;

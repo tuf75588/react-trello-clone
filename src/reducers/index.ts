@@ -28,11 +28,15 @@ function appReducer(state: AppState, action: Action): AppState {
     case 'MOVE_LIST': {
       const { dragIndex, hoverIndex } = action.payload;
       const lists = [...state.lists];
-      const itemToMove = moveItem(lists, dragIndex, hoverIndex);
+      state.lists = moveItem(lists, dragIndex, hoverIndex);
       return {
         ...state,
       };
     }
+    case 'SET_DRAGGED_ITEM': {
+      return { ...state, draggedItem: action.payload };
+    }
+
     default:
       return state;
   }
