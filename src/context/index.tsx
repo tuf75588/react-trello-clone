@@ -1,6 +1,7 @@
 import React, { createContext, useReducer } from 'react';
 import { v4 } from 'uuid';
 import appReducer from '../reducers/index';
+import { DragItem } from '../DragItem';
 interface Task {
   id: string;
   text: string;
@@ -14,6 +15,7 @@ interface List {
 
 export interface AppState {
   lists: List[];
+  draggedItem: DragItem | undefined;
 }
 
 interface AppStateContextProps {
@@ -22,6 +24,7 @@ interface AppStateContextProps {
 }
 
 const appData: AppState = {
+  draggedItem: undefined,
   lists: [
     {
       text: 'To do',
