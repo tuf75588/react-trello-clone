@@ -1,9 +1,12 @@
 import React, { useRef } from 'react';
+import { useDrop } from 'react-dnd';
 import { ColumnContainer, ColumnTitle } from '../styles/styles';
 import AddNewItem from './AddNewItem';
 import Card from './Card';
 import useAppState from '../hooks/useAppState';
 import useItemDrag from '../hooks/useDrag';
+import { DragItem } from '../DragItem';
+import { isHidden } from '../utils/isHidden';
 // INTERFACES
 interface ColumnProps {
   text: string;
@@ -13,11 +16,28 @@ interface ColumnProps {
 
 function Column({ text, index, id }: ColumnProps) {
   const { state, dispatch } = useAppState();
+  const [_, drop] = useDrop({
+    accept: 'COLUMN',
+    hover: (item: DragItem) => {
+      const dragIndex = item.index;
+      const hoverIndex = index;
+      // make sure we do not drop into the original column
+      if (dragIndex === hoverIndex) {
+        return;
+      }
+      dispatch({ type: 'MOVE_LIST', payload: { dragIndex, hoverIndex } });
+      item.index = hoverIndex;
+    },
+  });
+
   const { drag } = useItemDrag({ type: 'COLUMN', id, index, text });
   const ref = useRef<HTMLDivElement>(null);
-  drag(ref);
+  drag(drop(ref));
   return (
-    <ColumnContainer ref={ref}>
+    <ColumnContainer
+      ref={ref}
+      isHidden={isHidden(state.draggedItem, 'COLUMN', id)}
+    >
       <ColumnTitle>{text}</ColumnTitle>
       {state.lists[index].tasks.map((card, i) => {
         return <Card text={card.text} key={card.id} index={i} />;

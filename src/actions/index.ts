@@ -12,5 +12,12 @@ export type Action =
   | {
       type: 'ADD_TASK';
       payload: { text: string; columnId: string };
+    }
+  | {
+      type: 'MOVE_LIST';
+      payload: {
+        dragIndex: number;
+        hoverIndex: number;
+      };
     };
 // set to undefined if we are not dragging anything

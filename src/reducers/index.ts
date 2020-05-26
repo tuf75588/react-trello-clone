@@ -3,6 +3,7 @@ import { Action } from '../actions/index';
 import findItemIndexById from '../utils/findItemByIndexId';
 
 import { v4 } from 'uuid';
+import moveItem from '../utils/moveItem';
 function appReducer(state: AppState, action: Action): AppState {
   switch (action.type) {
     case 'ADD_LIST': {
@@ -26,6 +27,13 @@ function appReducer(state: AppState, action: Action): AppState {
     }
     case 'SET_DRAGGED_ITEM': {
       return { ...state, draggedItem: action.payload };
+    }
+    case 'MOVE_LIST': {
+      const { dragIndex, hoverIndex } = action.payload;
+      state.lists = moveItem(state.lists, dragIndex, hoverIndex);
+      return {
+        ...state,
+      };
     }
 
     default:
