@@ -12,9 +12,10 @@ interface ColumnProps {
   text: string;
   id: string;
   index: number;
+  isPreview?: boolean;
 }
 
-function Column({ text, index, id }: ColumnProps) {
+function Column({ text, index, id, isPreview }: ColumnProps) {
   const { state, dispatch } = useAppState();
   const [_, drop] = useDrop({
     accept: 'COLUMN',
@@ -36,7 +37,7 @@ function Column({ text, index, id }: ColumnProps) {
   return (
     <ColumnContainer
       ref={ref}
-      isHidden={isHidden(state.draggedItem, 'COLUMN', id)}
+      isHidden={isHidden(isPreview, state.draggedItem, 'COLUMN', id)}
     >
       <ColumnTitle>{text}</ColumnTitle>
       {state.lists[index].tasks.map((card, i) => {
