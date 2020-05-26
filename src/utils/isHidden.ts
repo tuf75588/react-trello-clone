@@ -12,8 +12,7 @@ export const isHidden = (
   id: string
 ): boolean => {
   return (
-    // type cast to true or false
-    !!isPreview &&
+    !isPreview &&
     !!draggedItem &&
     draggedItem.type === itemType &&
     draggedItem.id === id

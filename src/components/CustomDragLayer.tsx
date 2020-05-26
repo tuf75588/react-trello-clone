@@ -9,12 +9,8 @@ function getItemStyles(currentOffset: XYCoord | null): React.CSSProperties {
     return { display: 'none' };
   }
   const { x, y } = currentOffset;
-  // transform the element being dragged to be slightly tilted when dragging is active
   const transform = `translate(${x}px, ${y}px)`;
-  return {
-    transform,
-    WebkitTransform: transform,
-  };
+  return { transform, WebkitTransform: transform };
 }
 
 function CustomDragLayer() {
@@ -23,11 +19,15 @@ function CustomDragLayer() {
     currentOffset: monitor.getSourceClientOffset(),
     isDragging: monitor.isDragging(),
   }));
-  console.log(isDragging);
   return isDragging ? (
     <CustomDragLayerContainer>
       <div style={getItemStyles(currentOffset)}>
-        <Column id={item.id} text={item.text} index={item.index} />
+        <Column
+          id={item.id}
+          text={item.text}
+          index={item.index}
+          isPreview={true}
+        />
       </div>
     </CustomDragLayerContainer>
   ) : null;
