@@ -35,6 +35,23 @@ function appReducer(state: AppState, action: Action): AppState {
         ...state,
       };
     }
+    case 'MOVE_TASK': {
+      const {
+        hoverIndex,
+        dragIndex,
+        targetColumn,
+        sourceColumn,
+      } = action.payload;
+      const sourceLane = findItemIndexById(
+        state.lists,
+        action.payload.sourceColumn
+      );
+      const targetLaneIndex = findItemIndexById(state.lists, targetColumn);
+      console.log(sourceLane);
+      return {
+        ...state,
+      };
+    }
 
     default:
       return state;

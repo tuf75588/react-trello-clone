@@ -19,5 +19,13 @@ export type Action =
         dragIndex: number;
         hoverIndex: number;
       };
+    }
+  | {
+      type: 'MOVE_TASK';
+      payload: {
+        hoverIndex: number;
+        dragIndex: number;
+        sourceColumn: string;
+        targetColumn: string;
+      };
     };
-// set to undefined if we are not dragging anything
