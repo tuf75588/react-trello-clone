@@ -12,7 +12,7 @@ interface ColumnProps {
   text: string;
   id: string;
   index: number;
-  isPreview: boolean;
+  isPreview?: boolean;
 }
 
 function Column({ text, index, id, isPreview }: ColumnProps) {
@@ -42,7 +42,15 @@ function Column({ text, index, id, isPreview }: ColumnProps) {
     >
       <ColumnTitle>{text}</ColumnTitle>
       {state.lists[index].tasks.map((card, i) => {
-        return <Card text={card.text} key={card.id} index={i} />;
+        return (
+          <Card
+            text={card.text}
+            id={card.id}
+            key={card.id}
+            index={i}
+            columnId={id}
+          />
+        );
       })}
       <AddNewItem
         toggleButtonText="+ Add another task"

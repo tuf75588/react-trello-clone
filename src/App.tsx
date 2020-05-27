@@ -10,15 +10,7 @@ function App() {
     <AppContainer className="App">
       <CustomDragLayer />
       {state.lists.map((list, i) => {
-        return (
-          <Column
-            text={list.text}
-            id={list.id}
-            index={i}
-            key={list.id}
-            isPreview={false}
-          />
-        );
+        return <Column text={list.text} id={list.id} index={i} key={list.id} />;
       })}
       <AddNewItem
         toggleButtonText="+ Add Another list"
