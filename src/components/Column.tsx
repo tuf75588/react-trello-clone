@@ -18,16 +18,31 @@ interface ColumnProps {
 function Column({ text, index, id, isPreview }: ColumnProps) {
   const { state, dispatch } = useAppState();
   const [, drop] = useDrop({
-    accept: 'COLUMN',
+    accept: ['CARD', 'COLUMN'],
     hover: (item: DragItem) => {
-      const dragIndex = item.index;
-      const hoverIndex = index;
-      // make sure we do not drop into the original column
-      if (dragIndex === hoverIndex) {
-        return;
+      if (item.type === 'COLUMN') {
+        const dragIndex = item.index;
+        const hoverIndex = index;
+        dispatch({ type: 'MOVE_LIST', payload: { dragIndex, hoverIndex } });
+        item.index = hoverIndex;
+        if (dragIndex === hoverIndex) {
+          return;
+        }
+      } else {
+        // slightly different logic for dragging cards
+        const dragIndex = item.index;
+        const hoverIndex = 0;
+        const sourceColumn = item.columnId;
+        const targetColumn = id;
+        if (targetColumn === sourceColumn) return;
+        dispatch({
+          type: 'MOVE_TASK',
+          payload: { dragIndex, hoverIndex, sourceColumn, targetColumn },
+        });
+        item.index = hoverIndex;
+        item.columnId = targetColumn;
       }
-      dispatch({ type: 'MOVE_LIST', payload: { dragIndex, hoverIndex } });
-      item.index = hoverIndex;
+      // make sure we do not drop into the original column
     },
   });
 
