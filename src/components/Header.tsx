@@ -25,7 +25,7 @@ function Header(): JSX.Element {
         >
           Source code available on{' '}
           <a
-            href="https://github.com/tuf75588/trello-clone"
+            href="https://github.com/tuf75588/react-trello-clone"
             css={{
               '&:hover': { textDecoration: 'underline', color: '#f2f2f2' },
               color: '#fff',
