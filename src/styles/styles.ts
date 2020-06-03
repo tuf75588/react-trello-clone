@@ -8,7 +8,9 @@ export const AppContainer = styled.div`
   display: flex;
   flex-direction: row;
   height: 100%;
-  padding: 20px;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
   width: 100%;
 `;
 

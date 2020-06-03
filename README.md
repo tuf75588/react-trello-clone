@@ -14,4 +14,4 @@ Notable third party modules we will use for this application are:
 
 ---
 
-Once this application is complete, this readme will contain a link to a live deployment of this application hosted on Netlify
+[Link to live deployment](https://trello-lite.netlify.app/)

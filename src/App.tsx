@@ -5,6 +5,7 @@ import AddNewItem from './components/AddNewItem';
 import useAppState from './hooks/useAppState';
 import CustomDragLayer from './components/CustomDragLayer';
 import Header from './components/Header';
+
 function App() {
   const { state, dispatch } = useAppState();
   return (

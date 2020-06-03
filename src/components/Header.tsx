@@ -1,19 +1,42 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-function Header() {
+function Header(): JSX.Element {
   return (
-    <div
-      css={{
-        heigth: '32px',
-        padding: '4px',
-        background: '#026aa7',
-        color: '#fff',
-        textAlign: 'center',
-        fontSize: '2rem',
-      }}
-    >
-      <em>Trello - lite</em>
-    </div>
+    <nav css={{ background: '#026aa7' }}>
+      <div
+        css={{
+          padding: '4px',
+          color: '#fff',
+          fontSize: '2rem',
+          width: '100%',
+          textAlign: 'center',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+      >
+        <em css={{ width: '30%' }}>Trello - lite</em>
+        <span
+          css={{
+            fontSize: '11pt',
+            padding: 10,
+            textDecoration: 'none',
+          }}
+        >
+          Source code available on{' '}
+          <a
+            href="https://github.com/tuf75588/trello-clone"
+            css={{
+              '&:hover': { textDecoration: 'underline', color: '#f2f2f2' },
+              color: '#fff',
+              textDecoration: 'none',
+            }}
+          >
+            GitHub
+          </a>
+        </span>
+      </div>
+    </nav>
   );
 }
 
